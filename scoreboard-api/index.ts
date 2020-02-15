@@ -30,7 +30,7 @@ const getScoreForUser = (user: string) => new Promise<number>(resolve => {
 })
 
 function getCurrentHighScoresAsJSON(cb: (s: string) => void) {
-  redis.zrange("scores", 0, 10, (err, reply) => {
+  redis.zrange("scores", 0, +MAX_LENGTH, (err, reply) => {
     if (err) {
       console.error(err);
     }
