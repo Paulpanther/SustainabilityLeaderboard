@@ -18,8 +18,11 @@ const wsBaseUrl = "https://sustainability-scoreboard-api.simonknott.de:3001";
 
 type Unsubscribe = () => void;
 
+// Maps from username to score
+type Leaderboard = Record<string, number>;
+
 export function subscribeToLeaderBoard(
-  onChange: (leaderBoard: Record<string, number>) => void
+  onChange: (leaderBoard: Leaderboard) => void
 ): Unsubscribe {
   const ws = new WebSocket(wsBaseUrl);
 
