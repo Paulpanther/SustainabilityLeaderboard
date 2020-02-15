@@ -2,10 +2,10 @@ import axios from "axios";
 import { Ride } from "./datatypes";
 
 const trafi = axios.create({
-    baseURL: "https://whitelabel-app-api-bvg.trafi.com",
+    baseURL: "https://cors-anywhere.herokuapp.com/whitelabel-app-api-bvg.trafi.com",
 })
 
-const vehicleTypeMap = new Map([['tier','Kickscooter-Sharing'],['nextbike','Bike-Sharing'],['sts','Bahn & Bus'],['driveby','Car-Sharing'],['emmy','Scooter-Sharing']])
+//const vehicleTypeMap = new Map([['tier','Kickscooter-Sharing'],['nextbike','Bike-Sharing'],['sts','Bahn & Bus'],['driveby','Car-Sharing'],['emmy','Scooter-Sharing']])
 
 const monthMap = new Map([['Jan',0],['Feb',1],['Mar',2],['Apr',3],['May',4],['Jun',5],['Jul',6],['Aug',7],['Sep',8],['Oct',9],['Nov',10],['Dec',11]])
 
@@ -36,7 +36,7 @@ export function generateRidesList(json) : Ride[] {
                 const convStartTime = convDate[3].split(":")
                 const convEndTime = convDate[5].split(":")
                 const convertedRide = {
-                    vehicle : vehicleTypeMap.get(ride.vehicleSharing.providerIcon),
+                    vehicle : ride.vehicleSharing.providerIcon,
                     makeAndModel: ride.vehicleSharing.brandAndModel,
                     start : {
                         timestamp: new Date(2020, monthMap.get(convDate[0]), parseInt(convDate[1]), parseInt(convStartTime[0]), parseInt(convStartTime[1])),

@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import * as router from "./router";
 import * as session from "./session";
 import * as history from "./history";
+import 'regenerator-runtime/runtime';
 
 router.init([
     "login",
