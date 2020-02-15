@@ -21,3 +21,9 @@ export interface EnrichedRide extends Ride{
     km: number;
     co2PerKm: number;
 }
+
+export interface Vehicle {
+    name: string;
+    totalKm: number;
+    totalCo2: number;
+}
