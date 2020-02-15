@@ -1,23 +1,28 @@
 import * as router from "./router";
+import * as api from "./api";
 
-let inputToken: HTMLInputElement;
+let inputEmail: HTMLInputElement;
+let inputPassword: HTMLInputElement;
 let inputSubmit: HTMLInputElement;
 let token: string | false = false;
 
 function onSubmit(e: Event) {
     if (e.preventDefault) e.preventDefault();
 
-    token = inputToken.value;
-    if (token) {
-        document.cookie = `token=${token}`;
-        router.showSection(router.getAfterLoginSection());
-    }
-
+    api.signIn(inputEmail.value, inputPassword.value).then((tokenPair) => {
+        if (tokenPair) {
+            document.cookie = `accessToken=${tokenPair.accessToken}`;
+            document.cookie = `refreshToken=${tokenPair.refreshToken}`;
+            router.showSection(router.getAfterLoginSection());
+        }
+    });
+    
     return false;
 }
 
-export function init(tokenId: string, submitId: string) {
-    inputToken = document.getElementById(tokenId) as HTMLInputElement;
+export function init(emailId: string, passwordId: string, submitId: string) {
+    inputEmail = document.getElementById(emailId) as HTMLInputElement;
+    inputPassword = document.getElementById(passwordId) as HTMLInputElement;
     inputSubmit = document.getElementById(submitId) as HTMLInputElement;
     inputSubmit.addEventListener("submit", onSubmit);
 }
