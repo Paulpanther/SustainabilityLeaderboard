@@ -2,7 +2,7 @@ import axios from "axios";
 import { Ride } from "./datatypes";
 
 const trafi = axios.create({
-    baseURL: "https://whitelabel-app-api-bvg.trafi.com",
+    baseURL: "https://cors-anywhere.herokuapp.com/whitelabel-app-api-bvg.trafi.com",
 })
 
 //const vehicleTypeMap = new Map([['tier','Kickscooter-Sharing'],['nextbike','Bike-Sharing'],['sts','Bahn & Bus'],['driveby','Car-Sharing'],['emmy','Scooter-Sharing']])
