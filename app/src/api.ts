@@ -15,6 +15,8 @@ const monthMap = new Map([['Jan',0],['Feb',1],['Mar',2],['Apr',3],['May',4],['Ju
 interface TokenPair {
     refreshToken: string;
     accessToken: string;
+    refreshTokenExpiresAt: string;
+    accessTokenExpiresAt: string;
 }
 
 export async function fetchHistory(accessToken: string) {
@@ -81,5 +83,6 @@ export async function signIn(email: string, password: string): Promise<TokenPair
             acceptedTermKeys: ["terms", "privacy"],
         }
     );
+    console.log(response.data.authData);
     return response.data.authData;
 }

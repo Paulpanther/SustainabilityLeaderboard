@@ -11,6 +11,9 @@ router.init([
     "profile"
 ]);
 
+router.onSectionShow("profile", () => {
+    history.showRidesAndVehicles("rides", "vehicles");
+});
+
 session.init("login-email", "login-password", "login-submit");
 
-history.showRidesAndVehicles("rides", "vehicles");

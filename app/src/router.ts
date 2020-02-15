@@ -1,4 +1,5 @@
 let sections: HTMLElement[] = [];
+let events = new Map<string, () => void>();
 
 function showRequestedSection() {
     let requestedSection = getDefaultSection();
@@ -34,7 +35,15 @@ export function showSection(section: string | HTMLElement) {
             section.dataset["shown"] = "false";
 
         requestedSection.dataset["shown"] = "true";
+
+        if (events.has(requestedSection.id)) {
+            events.get(requestedSection.id)();
+        }
     }
+}
+
+export function onSectionShow(section: string, callback: () => void) {
+    events.set(section, callback);
 }
 
 export function init(sectionIds: string[]) {
