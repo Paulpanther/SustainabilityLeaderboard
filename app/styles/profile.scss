@@ -1,15 +1,32 @@
-#profile {
-  display: flex;
-
-  #vehicles {
-
-  }
-
-  #rides {
-
-  }
-
-  .prototype {
-    display: none;
-  }
-}
+//#profile {
+//
+//  > div {
+//    display: flex;
+//    flex-direction: row;
+//
+//    width: 100%;
+//  }
+//
+//  #vehicles {
+//    flex: 1;
+//  }
+//
+//  #rides {
+//    width: 30%;
+//
+//    .route {
+//      display: flex;
+//      flex-direction: row;
+//
+//      svg {
+//        stroke-width: 3px;
+//        stroke: #00f;
+//        fill: #fff;
+//      }
+//    }
+//  }
+//
+//  .prototype {
+//    display: none;
+//  }
+//}
