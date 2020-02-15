@@ -12,6 +12,7 @@
         <a href="#leaderboard">Leaderboard</a>
         <a href="#profile">Profile</a>
     </header>
+
     <section data-default id="login">
         <h1>Login</h1>
         <form id="login-submit">
@@ -19,12 +20,22 @@
             <input type="submit" value="Login">
         </form>
     </section>
+
     <section id="leaderboard">
         <h1>Leaderboard</h1>
     </section>
+
     <section data-after-login id="profile">
         <h1>Profile</h1>
+        <div id="vehicles">
+            <div class="prototype">
+                <span class="label"></span>
+                <span class="co2"></span>
+                <span class="km"></span>
+            </div>
+        </div>
     </section>
+
     <script src="src/index.ts"></script>
 </body>
 </html>
