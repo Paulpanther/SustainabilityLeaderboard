@@ -8,6 +8,6 @@ router.init([
     "profile"
 ]);
 
-session.init("login-token", "login-submit");
+session.init("login-email", "login-password", "login-submit");
 
 history.showHistory("vehicles");
