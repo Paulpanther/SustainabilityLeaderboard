@@ -10,4 +10,4 @@ router.init([
 
 session.init("login-token", "login-submit");
 
-history.showHistory("vehicles");
+history.showRidesAndVehicles("rides", "vehicles");
