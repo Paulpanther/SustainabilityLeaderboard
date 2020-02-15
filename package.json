@@ -4,7 +4,7 @@
   "description": "Show the Co2 and other emissions for your travel route and compare it to others ",
   "scripts": {
     "start": "npx parcel app/index.html",
-    "build": "npx parcel build app/index.html && mv dist public"
+    "build": "npx parcel build app/index.html"
   },
   "repository": {
     "type": "git",
