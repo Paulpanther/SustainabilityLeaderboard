@@ -3,6 +3,7 @@ import * as express from "express";
 import * as morgan from "morgan";
 import * as _ from "lodash";
 import * as ws from "ws";
+import * as cors from "cors";
 import * as bodyParser from "body-parser";
 
 const { REDIS_HOST, REDIS_PORT, HTTP_PORT = "3000", WS_PORT = "3001", MAX_LENGTH = 10 } = process.env;
@@ -16,6 +17,7 @@ const app = express();
 
 app.use(morgan("combined"));
 app.use(bodyParser.text());
+app.use(cors());
 
 const listeners: Set<ws> = new Set();
 
