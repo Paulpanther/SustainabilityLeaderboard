@@ -7,61 +7,67 @@
     <title>Sustainability Scoreboard</title>
 </head>
 <body>
-    <header>
-        <div>Sustainability Leaderboard</div>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#profile">Profile</a>
-    </header>
+    <div class="container">
+        <header>
+            <div>Sustainability Leaderboard</div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#leaderboard">Leaderboard</a>
+                <a class="navbar-brand" href="#profile">Profile</a>
+                <a class="navbar-brand" href="#login">Login</a>
+            </nav>
+        </header>
 
-    <section data-default id="login">
-        <h1>Login</h1>
-        <form id="login-submit">
-            <input type="text" id="login-email" placeholder="E-Mail">
-            <input type="password" id="login-password" placeholder="Password">
-            <input type="submit" value="Login">
-        </form>
-    </section>
+        <section data-default id="login">
+            <h1>Login</h1>
+            <form id="login-submit">
+                <input type="text" id="login-email" placeholder="E-Mail">
+                <input type="password" id="login-password" placeholder="Password">
+                <input type="submit" value="Login">
+            </form>
+        </section>
 
-    <section id="leaderboard">
-        <h1>Leaderboard</h1>
-    </section>
+        <section id="leaderboard">
+            <h1>Leaderboard</h1>
+        </section>
 
-    <section class="container" data-after-login id="profile">
-        <h1>Profile</h1>
-        <div class="row">
-            <div class="col-6" id="vehicles">
-                <div class="prototype">
-                    <span class="label"></span>
-                    <span class="co2"></span>
-                    <span class="km"></span>
-                </div>
-            </div>
-            <div class="col-6" id="rides">
-                <div class="prototype">
-                    <div>
+        <section data-after-login id="profile">
+            <h1>Profile</h1>
+            <div class="row">
+                <div class="col-6" id="vehicles">
+                    <div class="prototype">
                         <span class="label"></span>
-                        <span class="price"></span>
-                    </div>
-                    <div>
                         <span class="co2"></span>
                         <span class="km"></span>
                     </div>
-                    <div class="route">
-                        <svg>
-                            <circle cx="15" cy="15" r="13"/>
-                            <line x1="15" y1="32" x2="15" y2="58"/>
-                            <circle cx="15" cy="75" r="13"/>
-                        </svg>
+                </div>
+                <div class="col-6" id="rides">
+                    <div class="prototype">
                         <div>
-                            <span class="start-time"></span>
-                            <span class="end-time"></span>
+                            <span class="label"></span>
+                            <span class="price"></span>
+                        </div>
+                        <div>
+                            <span class="co2"></span>
+                            <span class="km"></span>
+                        </div>
+                        <div class="route row">
+                            <div class="col-1">
+                                <svg height="90">
+                                    <circle cx="15" cy="15" r="13"/>
+                                    <line x1="15" y1="32" x2="15" y2="58"/>
+                                    <circle cx="15" cy="75" r="13"/>
+                                </svg>
+                            </div>
+                            <div class="col-6 route-times">
+                                <p class="start-time"></p>
+                                <p class="end-time"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    </div>
     <script src="src/index.ts"></script>
 </body>
 </html>

@@ -1,9 +1,22 @@
 #profile {
 
-  #rides .route svg {
-    stroke-width: 3px;
-    stroke: #00f;
-    fill: #fff;
+  #rides .route {
+    svg {
+
+      stroke-width: 3px;
+      stroke: #00f;
+      fill: #fff;
+    }
+    p {
+      margin: 0;
+      display: block;
+    }
+    .route-times {
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+    ;
+    }
   }
 
   .prototype {
