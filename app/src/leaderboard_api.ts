@@ -1,6 +1,6 @@
 import * as axios from "axios";
 
-const httpBaseUrl = "https://sustainability-scoreboard-api.simonknott.de:3000";
+const httpBaseUrl = "http://sustainability-scoreboard-api.simonknott.de:3000";
 
 export async function publishScore(username: string, score: number) {
   await axios.post(
@@ -14,7 +14,7 @@ export async function publishScore(username: string, score: number) {
   );
 }
 
-const wsBaseUrl = "https://sustainability-scoreboard-api.simonknott.de:3001";
+const wsBaseUrl = "ws://sustainability-scoreboard-api.simonknott.de:3001";
 
 type Unsubscribe = () => void;
 
