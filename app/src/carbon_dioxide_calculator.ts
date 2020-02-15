@@ -8,6 +8,8 @@ function getCo2PerKm(ride: Ride) {
             return 0;
         case 'tier':
             return 4.7;
+        default:
+            return 0;
     }
 }
 
