@@ -9,12 +9,12 @@ interface TokenPair {
     accessToken: string;
 }
 
-export async function fetchHistory(token: string) {
+export async function fetchHistory(accessToken: string) {
     const response = await trafi.get(
         "/v1/history",
         {
             headers: {
-                Authorization: "Bearer " + token
+                Authorization: "Bearer " + accessToken
             }
         }
     );
