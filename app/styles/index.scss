@@ -6,3 +6,11 @@ body {
 * {
   box-sizing: border-box;
 }
+
+body section {
+  display: none;
+
+  &[data-shown=true] {
+    display: block;
+  }
+}
