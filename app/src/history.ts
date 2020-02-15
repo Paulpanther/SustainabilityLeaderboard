@@ -13,7 +13,21 @@ class VehicleElement {
         const kmElem = vehicle.querySelector(".km");
 
         // @ts-ignore
-        labelElem.innerText = this.vehicleData.name;
+
+        switch (this.vehicleData.name) {
+            case "driveby":
+                labelElem.innerText = "Miles carsharing";
+                break;
+            case 'nextbike':
+                labelElem.innerText = "Nextbike bikesharing";
+                break;
+            case 'tier':
+                labelElem.innerText = "Tier electric kick scooter sharing";
+                break;
+            default:
+                labelElem.innerText = this.rideData.vehicle;
+                break;
+        }
         // @ts-ignore
         co2Elem.innerText = this.vehicleData.totalCo2;
         // @ts-ignore
@@ -36,7 +50,21 @@ class RideElement {
         const endTimeElem = ride.querySelector(".end-time");
 
         // @ts-ignore
-        labelElem.innerText = this.rideData.vehicle;
+        switch (this.rideData.vehicle) {
+            case "driveby":
+                labelElem.innerText = "Miles carsharing";
+                break;
+            case 'nextbike':
+                labelElem.innerText = "Nextbike bikesharing";
+                break;
+            case 'tier':
+                labelElem.innerText = "Tier electric kick scooter sharing";
+                break;
+            default:
+                labelElem.innerText = this.rideData.vehicle;
+                break;
+        }
+
         // @ts-ignore
         priceElem.innerText = this.rideData.price;
         // @ts-ignore

@@ -4,12 +4,16 @@ function getCo2PerKm(ride: Ride) {
     switch (ride.vehicle) {
         case 'driveby':
             return 105;
+            break;
         case 'nextbike':
             return 0;
+            break;
         case 'tier':
             return 4.7;
+            break;
         default:
             return 0;
+            break;
     }
 }
 

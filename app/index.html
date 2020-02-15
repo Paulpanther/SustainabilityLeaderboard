@@ -10,7 +10,7 @@
     <div class="container">
         <header>
             <div>Sustainability Leaderboard</div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#leaderboard">Leaderboard</a>
                 <a class="navbar-brand" href="#profile">Profile</a>
                 <a class="navbar-brand" href="#login">Login</a>
@@ -34,21 +34,18 @@
             <h1>Profile</h1>
             <div class="row">
                 <div class="col-6" id="vehicles">
-                    <div class="prototype">
-                        <span class="label"></span>
-                        <span class="co2"></span>
-                        <span class="km"></span>
+                    <h3> Total usage per vehicle </h3>
+                    <div class="prototype summed-up-values">
+                        <h4><span class="label"></span> </h4>
+                        <label> Total carbon dioxide emissions: </label> <span class="co2"></span>g <br/>
+                        <label> Total distance: </label> <span class="km"></span>km
                     </div>
                 </div>
                 <div class="col-6" id="rides">
-                    <div class="prototype">
+                    <h3> Trips </h3>
+                    <div class="prototype ride">
                         <div>
-                            <span class="label"></span>
-                            <span class="price"></span>
-                        </div>
-                        <div>
-                            <span class="co2"></span>
-                            <span class="km"></span>
+                            <h4><span class="label"></span> </h4>
                         </div>
                         <div class="route row">
                             <div class="col-1">
@@ -58,9 +55,14 @@
                                     <circle cx="15" cy="75" r="13"/>
                                 </svg>
                             </div>
-                            <div class="col-6 route-times">
+                            <div class="col-5 route-times">
                                 <p class="start-time"></p>
                                 <p class="end-time"></p>
+                            </div>
+                            <div class="col-5">
+                                <label> Price: </label> <span class="price"></span>€ <br/>
+                                <label> Carbon dioxide: </label> <span class="co2"></span>g <br/>
+                                <label class="distance"> Distance: </label> <span class="km"></span>km
                             </div>
                         </div>
                     </div>
