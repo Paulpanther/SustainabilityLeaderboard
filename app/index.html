@@ -14,13 +14,15 @@
     </header>
     <section data-default id="login">
         <h1>Login</h1>
-        <input type="text" id="login-token" placeholder="token">
-        <input type="submit" id="login-submit" value="Login">
+        <form id="login-submit">
+            <input type="text" id="login-token" placeholder="token">
+            <input type="submit" value="Login">
+        </form>
     </section>
     <section id="leaderboard">
         <h1>Leaderboard</h1>
     </section>
-    <section data-afterlogin id="profile">
+    <section data-after-login id="profile">
         <h1>Profile</h1>
     </section>
     <script src="src/index.ts"></script>

@@ -18,11 +18,16 @@ function getDefaultSection(): HTMLElement {
 }
 
 export function getAfterLoginSection(): HTMLElement {
-    return sections.find((section) => section.dataset["after-login"] !== undefined);
+    return sections.find((section) => section.dataset["afterLogin"] !== undefined);
 }
 
 export function showSection(section: string | HTMLElement) {
-    let requestedSection = document.getElementById(requestedSectionId);
+    let requestedSection: HTMLElement;
+    if (typeof section === "string")
+        requestedSection = document.getElementById(section);
+    else
+        requestedSection = section;
+
     if (requestedSection) {
         const otherSections = sections.filter((section) => section !== requestedSection);
         for (const section of otherSections)
