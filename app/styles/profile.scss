@@ -1,12 +1,9 @@
 #profile {
-  display: flex;
 
-  #vehicles {
-
-  }
-
-  #rides {
-
+  #rides .route svg {
+    stroke-width: 3px;
+    stroke: #00f;
+    fill: #fff;
   }
 
   .prototype {

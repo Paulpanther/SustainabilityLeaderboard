@@ -26,36 +26,36 @@
         <h1>Leaderboard</h1>
     </section>
 
-    <section data-after-login id="profile">
+    <section class="container" data-after-login id="profile">
         <h1>Profile</h1>
-        <div id="vehicles">
-            <div class="prototype">
-                <span class="label"></span>
-                <span class="co2"></span>
-                <span class="km"></span>
-            </div>
-        </div>
-        <div id="rides">
-            <div class="prototype">
-                <div>
+        <div class="row">
+            <div class="col-6" id="vehicles">
+                <div class="prototype">
                     <span class="label"></span>
-                    <span class="price"></span>
-                </div>
-                <div>
                     <span class="co2"></span>
                     <span class="km"></span>
                 </div>
-                <div class="route">
-                    <svg>
-                        <circle cx="15" cy="15" r="13"/>
-                        <line x1="15" y1="32" x2="15" y2="58"/>
-                        <circle cx="15" cy="75" r="13"/>
-                    </svg>
+            </div>
+            <div class="col-6" id="rides">
+                <div class="prototype">
                     <div>
-                        <span class="start-time"></span>
+                        <span class="label"></span>
+                        <span class="price"></span>
                     </div>
                     <div>
-                        <span class="end-time"></span>
+                        <span class="co2"></span>
+                        <span class="km"></span>
+                    </div>
+                    <div class="route">
+                        <svg>
+                            <circle cx="15" cy="15" r="13"/>
+                            <line x1="15" y1="32" x2="15" y2="58"/>
+                            <circle cx="15" cy="75" r="13"/>
+                        </svg>
+                        <div>
+                            <span class="start-time"></span>
+                            <span class="end-time"></span>
+                        </div>
                     </div>
                 </div>
             </div>

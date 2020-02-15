@@ -66,7 +66,13 @@ function showRides(ridesContainerId: string, rides: EnrichedRide[]) {
 function convertRidesToVehicles(rides: EnrichedRide[]): Vehicle[] {
     const vehicles = new Map<string, Vehicle>();
     for (const ride of rides) {
-        if (vehicles.has(ride.vehicle)) {
+        if (!vehicles.has(ride.vehicle)) {
+            vehicles.set(ride.vehicle, {
+               name: ride.vehicle,
+               totalKm: ride.km,
+               totalCo2: ride.co2
+            });
+        } else {
             const vehicle = vehicles.get(ride.vehicle);
             vehicle.totalKm += ride.km;
             vehicle.totalCo2 += ride.co2;
