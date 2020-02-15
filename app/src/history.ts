@@ -1,5 +1,7 @@
-import {getPrototype} from "./dom_util";
+import {getCookie, getPrototype} from "./dom_util";
 import {EnrichedRide, Vehicle} from "./datatypes";
+import * as api from "./api";
+import * as cdc from "./carbon_dioxide_calculator";
 
 class VehicleElement {
     public constructor(private vehicleData: Vehicle) {}
@@ -82,31 +84,11 @@ function convertRidesToVehicles(rides: EnrichedRide[]): Vehicle[] {
 }
 
 export function showRidesAndVehicles(ridesContainerId: string, vehiclesContainerId: string) {
-    const rides: EnrichedRide[] = [
-        {
-            start: {
-                timestamp: new Date(),
-                location: {
-                    lat: 0,
-                    lon: 0,
-                }
-            },
-            end: {
-                timestamp: new Date(),
-                location: {
-                    lat: 0,
-                    lon: 0,
-                }
-            },
-            price: 10,
-            co2: 20,
-            km: 30,
-            vehicle: "car",
-            co2PerKm: 20 / 30,
-            makeAndModel: "vw"
-        }
-    ];
-    const vehicles = convertRidesToVehicles(rides);
-    showRides(ridesContainerId, rides);
-    showVehicles(vehiclesContainerId, vehicles);
+    api.fetchHistory(getCookie("accessToken")).then((json) => {
+        const rides = api.generateRidesList(json)
+            .map((ride) => cdc.getEnrichedRide(ride));
+        const vehicles = convertRidesToVehicles(rides);
+        showRides(ridesContainerId, rides);
+        showVehicles(vehiclesContainerId, vehicles);
+    });
 }

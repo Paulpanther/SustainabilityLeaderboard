@@ -1,3 +1,4 @@
+// @ts-ignore
 import axios from "axios";
 import { Ride } from "./datatypes";
 
