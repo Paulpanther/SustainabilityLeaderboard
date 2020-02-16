@@ -19,7 +19,7 @@ const wsBaseUrl = "ws://sustainability-scoreboard-api.simonknott.de:3001";
 type Unsubscribe = () => void;
 
 // Maps from username to score
-export type Leaderboard = {
+export type Scoreboard = {
   topScorers: Record<string, number>,
   own: {
     score: number,
@@ -28,9 +28,9 @@ export type Leaderboard = {
   totalUsersCount: number,
 }
 
-export function subscribeToLeaderBoard(
+export function subscribeToScoreBoard(
   username: string,
-  onChange: (leaderBoard: Leaderboard) => void
+  onChange: (leaderBoard: Scoreboard) => void
 ): Unsubscribe {
   const ws = new WebSocket(wsBaseUrl);
 
@@ -38,8 +38,10 @@ export function subscribeToLeaderBoard(
     const parsed = JSON.parse(data);
     onChange(parsed);
   };
-
-  ws.send(username);
+  
+  ws.onopen = () => {
+    ws.send(username);
+  }
 
   return () => ws.close();
 }

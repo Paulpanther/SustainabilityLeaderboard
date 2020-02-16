@@ -1,8 +1,9 @@
-import {getCookie, getPrototype, removeOldEntries} from "./dom_util";
-import {EnrichedRide, Vehicle} from "./datatypes";
+import { getCookie, getPrototype, removeOldEntries } from "./dom_util";
+import { EnrichedRide, Vehicle } from "./datatypes";
 import * as api from "./api";
 import * as cdc from "./carbon_dioxide_calculator";
-import {Leaderboard} from "./scoreboard_api";
+import * as scoreboardApi from "./scoreboard_api";
+import { Scoreboard } from "./scoreboard_api";
 import * as _ from "lodash";
 
 class VehicleElement {
@@ -106,7 +107,7 @@ class ScoreboardEntryElement {
         // @ts-ignore
         nameElem.innerText = this.name;
         // @ts-ignore
-        co2PerKmElem.innerText = this.co2PerKm;
+        co2PerKmElem.innerText = _.round(this.co2PerKm, 2);
         if (this.isOwn)
             proto.classList.add("own");
 
@@ -126,11 +127,12 @@ function showRides(ridesContainerId: string, rides: EnrichedRide[]) {
     rides.forEach((ride) => new RideElement(ride).addToHtml(ridesContainer));
 }
 
-function showScoreboard(leaderBoardContainerId: string, board: Leaderboard) {
+function showScoreboard(leaderBoardContainerId: string, board: Scoreboard) {
     const leaderBoardContainer = document.getElementById(leaderBoardContainerId);
     removeOldEntries(leaderBoardContainer);
     _.forEach(board.topScorers, (co2PerKm, name) => {
-        new ScoreboardEntryElement(name, co2PerKm, name === getCookie("email"));
+        const element = new ScoreboardEntryElement(name, co2PerKm, name === getCookie("email"));
+        element.addToHtml(leaderBoardContainer);
     });
 }
 
@@ -152,11 +154,30 @@ function convertRidesToVehicles(rides: EnrichedRide[]): Vehicle[] {
     return Array.from(vehicles.values());
 }
 
+export function showAndFetchScoreboard(containerId: string) {
+    scoreboardApi.subscribeToScoreBoard(getCookie("email"), scoreboard => {
+        console.log(scoreboard);
+        showScoreboard(containerId, scoreboard);
+    });
+}
+
+function calculateScore(rides: EnrichedRide[]): number {
+    const drivenKilometers = _.sumBy(rides, (r: EnrichedRide) => r.km);
+    const emittedCo2 = _.sumBy(rides, (r: EnrichedRide) => r.co2);
+
+    const avg = emittedCo2 / drivenKilometers;
+    return avg;
+}
+
 export async function showRidesAndVehicles(ridesContainerId: string, vehiclesContainerId: string) {
     api.fetchHistory(getCookie("accessToken")).then(async (json) => {
         const rides = await Promise.all(api.generateRidesList(json)
             .map(async (ride) => await cdc.getEnrichedRide(ride)));
         const vehicles = convertRidesToVehicles(rides);
+
+        const score = calculateScore(rides);
+        scoreboardApi.publishScore(getCookie("email"), score);
+
         showRides(ridesContainerId, rides);
         showVehicles(vehiclesContainerId, vehicles);
     });
