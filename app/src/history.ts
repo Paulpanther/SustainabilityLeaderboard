@@ -31,9 +31,9 @@ class VehicleElement {
                 break;
         }
         // @ts-ignore
-        co2Elem.innerText = this.vehicleData.totalCo2;
+        co2Elem.innerText = this.vehicleData.totalCo2.toFixed(2);
         // @ts-ignore
-        kmElem.innerText = this.vehicleData.totalKm;
+        kmElem.innerText = this.vehicleData.totalKm.toFixed(2);
 
         parent.appendChild(vehicle);
     }
@@ -74,9 +74,9 @@ class RideElement {
         // @ts-ignore
         priceElem.innerText = this.rideData.price;
         // @ts-ignore
-        co2Elem.innerText = this.rideData.co2;
+        co2Elem.innerText = this.rideData.co2.toFixed(2);
         // @ts-ignore
-        kmElem.innerText = this.rideData.km;
+        kmElem.innerText = this.rideData.km.toFixed(2);
         const formatOptions = {weekday: "long", month: "long", day: "numeric"};
         const startTime = this.rideData.start.timestamp;
         // @ts-ignore
