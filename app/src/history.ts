@@ -2,6 +2,8 @@ import {getCookie, getPrototype, removeOldEntries} from "./dom_util";
 import {EnrichedRide, Vehicle} from "./datatypes";
 import * as api from "./api";
 import * as cdc from "./carbon_dioxide_calculator";
+import {Leaderboard} from "./scoreboard_api";
+import * as _ from "lodash";
 
 class VehicleElement {
     public constructor(private vehicleData: Vehicle) {}
@@ -95,6 +97,26 @@ class RideElement {
     }
 }
 
+class ScoreboardEntryElement {
+    public constructor(private name: string, private co2PerKm: number, private isOwn: boolean) {}
+
+    public addToHtml(parent: HTMLElement) {
+        const proto = getPrototype(parent);
+
+        const nameElem = proto.querySelector(".name");
+        const co2PerKmElem = proto.querySelector(".co2PerKm");
+
+        // @ts-ignore
+        nameElem.innerText = this.name;
+        // @ts-ignore
+        co2PerKmElem.innerText = this.co2PerKm;
+        if (this.isOwn)
+            proto.classList.add("own");
+
+        parent.appendChild(proto);
+    }
+}
+
 function showVehicles(vehiclesContainerId: string, vehicles: Vehicle[]) {
     const vehiclesContainer = document.getElementById(vehiclesContainerId);
     removeOldEntries(vehiclesContainer);
@@ -105,6 +127,14 @@ function showRides(ridesContainerId: string, rides: EnrichedRide[]) {
     const ridesContainer = document.getElementById(ridesContainerId);
     removeOldEntries(ridesContainer);
     rides.forEach((ride) => new RideElement(ride).addToHtml(ridesContainer));
+}
+
+function showScoreboard(leaderBoardContainerId: string, board: Leaderboard) {
+    const leaderBoardContainer = document.getElementById(leaderBoardContainerId);
+    removeOldEntries(leaderBoardContainer);
+    _.forEach(board.topScorers, (co2PerKm, name) => {
+        new ScoreboardEntryElement(name, co2PerKm, name === getCookie("email"));
+    });
 }
 
 function convertRidesToVehicles(rides: EnrichedRide[]): Vehicle[] {
@@ -125,10 +155,10 @@ function convertRidesToVehicles(rides: EnrichedRide[]): Vehicle[] {
     return Array.from(vehicles.values());
 }
 
-export function showRidesAndVehicles(ridesContainerId: string, vehiclesContainerId: string) {
-    api.fetchHistory(getCookie("accessToken")).then((json) => {
-        const rides = api.generateRidesList(json)
-            .map((ride) => cdc.getEnrichedRide(ride));
+export async function showRidesAndVehicles(ridesContainerId: string, vehiclesContainerId: string) {
+    api.fetchHistory(getCookie("accessToken")).then(async (json) => {
+        const rides = await Promise.all(api.generateRidesList(json)
+            .map(async (ride) => await cdc.getEnrichedRide(ride)));
         const vehicles = convertRidesToVehicles(rides);
         showRides(ridesContainerId, rides);
         showVehicles(vehiclesContainerId, vehicles);
