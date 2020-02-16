@@ -14,6 +14,7 @@ class VehicleElement {
         const labelElem = vehicle.querySelector(".label");
         const co2Elem = vehicle.querySelector(".co2");
         const kmElem = vehicle.querySelector(".km");
+        const fridgeEquivalentElem = vehicle.querySelector(".fridge-equivalent");
 
         switch (this.vehicleData.name) {
             case "driveby":
@@ -37,6 +38,8 @@ class VehicleElement {
         co2Elem.innerText = this.vehicleData.totalCo2.toFixed(2);
         // @ts-ignore
         kmElem.innerText = this.vehicleData.totalKm.toFixed(2);
+        // @ts-ignore
+        fridgeEquivalentElem.innerText = (this.vehicleData.totalCo2 / 479).toFixed(2);
 
         parent.appendChild(vehicle);
     }
@@ -55,6 +58,7 @@ class RideElement {
         const endTimeElem = ride.querySelector(".end-time");
         const makeAndModelElem = ride.querySelector(".make-and-model");
         const co2PerKmElem = ride.querySelector(".co2-per-km");
+        const fridgeEquivalentElem = ride.querySelector(".fridge-equivalent")
 
         switch (this.rideData.vehicle) {
             case "driveby":
@@ -92,6 +96,8 @@ class RideElement {
         makeAndModelElem.innerText = this.rideData.makeAndModel;
         // @ts-ignore
         co2PerKmElem.innerText = this.rideData.co2PerKm.toFixed(2);
+        // @ts-ignore
+        fridgeEquivalentElem.innerText = (this.rideData.co2 / 479).toFixed(2);
 
 
         parent.appendChild(ride);
