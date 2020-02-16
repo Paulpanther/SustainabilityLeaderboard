@@ -14,7 +14,7 @@ function showRequestedSection() {
     showSection(requestedSection.id);
 }
 
-function getDefaultSection(): HTMLElement {
+export function getDefaultSection(): HTMLElement {
     return sections.find((section) => section.dataset["default"] !== undefined);
 }
 
@@ -28,6 +28,11 @@ export function showSection(section: string | HTMLElement) {
         requestedSection = document.getElementById(section);
     else
         requestedSection = section;
+
+    if (window.location.hash.substr(1) !== requestedSection.id) {
+        window.location.hash = requestedSection.id;
+        return;
+    }
 
     if (requestedSection) {
         const otherSections = sections.filter((section) => section !== requestedSection);

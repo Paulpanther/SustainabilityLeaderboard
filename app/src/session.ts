@@ -1,6 +1,6 @@
 import * as router from "./router";
 import * as api from "./api";
-import {getCookie} from "./dom_util";
+import {getCookie, removeCookie} from "./dom_util";
 
 let inputEmail: HTMLInputElement;
 let inputPassword: HTMLInputElement;
@@ -25,6 +25,12 @@ function isAlreadyLogin() {
     if (token) {
         router.showSection(router.getAfterLoginSection());
     }
+}
+
+export function logout() {
+    removeCookie("accessToken");
+    removeCookie("refreshToken");
+    router.showSection(router.getDefaultSection());
 }
 
 export function init(emailId: string, passwordId: string, submitId: string) {

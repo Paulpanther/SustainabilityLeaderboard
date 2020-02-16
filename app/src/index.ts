@@ -8,11 +8,16 @@ import 'regenerator-runtime/runtime';
 router.init([
     "login",
     "leaderboard",
-    "profile"
+    "profile",
+    "logout",
 ]);
 
 router.onSectionShow("profile", () => {
     history.showRidesAndVehicles("rides", "vehicles");
+});
+
+router.onSectionShow("logout", () => {
+    session.logout();
 });
 
 session.init("login-email", "login-password", "login-submit");
