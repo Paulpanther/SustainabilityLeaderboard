@@ -34,37 +34,41 @@
         <section data-after-login id="profile">
             <h1>Profile</h1>
             <div class="row">
-                <div class="col-6" id="vehicles">
+                <div class="col-6">
                     <h3> Total usage per vehicle </h3>
-                    <div class="prototype summed-up-values">
-                        <h4><span class="label"></span> </h4>
-                        <label> Total carbon dioxide emissions: </label> <span class="co2"></span>g <br/>
-                        <label> Total distance: </label> <span class="km"></span>km
+                    <div id="vehicles">
+                        <div class="prototype summed-up-values">
+                            <h4><span class="label"></span> </h4>
+                            <label> Total carbon dioxide emissions: </label> <span class="co2"></span>g <br/>
+                            <label> Total distance: </label> <span class="km"></span>km
+                        </div>
                     </div>
                 </div>
-                <div class="col-6" id="rides">
+                <div class="col-6">
                     <h3> Trips </h3>
-                    <div class="prototype ride">
-                        <div>
-                            <h4><span class="label"></span> </h4>
-                        </div>
-                        <div class="route row">
-                            <div class="col-1">
-                                <svg height="90">
-                                    <circle cx="15" cy="15" r="13"/>
-                                    <line x1="15" y1="32" x2="15" y2="58"/>
-                                    <circle cx="15" cy="75" r="13"/>
-                                </svg>
+                    <div id="rides">
+                        <div class="prototype ride">
+                            <div>
+                                <h4><span class="label"></span> </h4>
                             </div>
-                            <div class="col-5 route-times">
-                                <p class="start-time"></p>
-                                <p class="make-and-model"></p>
-                                <p class="end-time"></p>
-                            </div>
-                            <div class="col-5">
-                                <label> Price: </label> <span class="price"></span>€ <br/>
-                                <label> Carbon dioxide: </label> <span class="co2"></span>g <br/>
-                                <label class="distance"> Distance: </label> <span class="km"></span>km
+                            <div class="route row">
+                                <div class="col-1">
+                                    <svg height="90">
+                                        <circle cx="15" cy="15" r="13"/>
+                                        <line x1="15" y1="32" x2="15" y2="58"/>
+                                        <circle cx="15" cy="75" r="13"/>
+                                    </svg>
+                                </div>
+                                <div class="col-5 route-times">
+                                    <p class="start-time"></p>
+                                    <p class="make-and-model"></p>
+                                    <p class="end-time"></p>
+                                </div>
+                                <div class="col-5">
+                                    <label> Price: </label> <span class="price"></span>€ <br/>
+                                    <label> Carbon dioxide: </label> <span class="co2"></span>g <br/>
+                                    <label class="distance"> Distance: </label> <span class="km"></span>km
+                                </div>
                             </div>
                         </div>
                     </div>
