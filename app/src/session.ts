@@ -13,6 +13,7 @@ function onSubmit(e: Event) {
         if (tokenPair) {
             document.cookie = `accessToken=${tokenPair.accessToken};expires=${tokenPair.accessTokenExpiresAt}`;
             document.cookie = `refreshToken=${tokenPair.refreshToken};expires=${tokenPair.refreshTokenExpiresAt}`;
+            document.cookie = `email=${inputEmail.value}`;
             router.showSection(router.getAfterLoginSection());
         }
     });
