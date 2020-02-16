@@ -71,5 +71,25 @@
     .col-6 {
       max-width: 100%;
     }
+
+    .ride:nth-of-type(2) {
+      border-top-right-radius: 5pt;
+      border-top-left-radius: 5pt;
+    }
+
+    .ride:nth-last-of-type(1) {
+      border-bottom-right-radius: 5pt;
+      border-bottom-left-radius: 5pt;
+    }
+
+    .summed-up-values:nth-of-type(2) {
+      border-top-right-radius: 5pt;
+      border-top-left-radius: 5pt;
+    }
+
+    .summed-up-values:nth-last-of-type(1) {
+      border-bottom-right-radius: 5pt;
+      border-bottom-left-radius: 5pt;
+    }
   }
 }
