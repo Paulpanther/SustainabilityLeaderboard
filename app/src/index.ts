@@ -7,7 +7,7 @@ import 'regenerator-runtime/runtime';
 
 router.init([
     "login",
-    "leaderboard",
+    "scoreboard",
     "profile",
     "logout",
 ]);
@@ -19,6 +19,10 @@ router.onSectionShow("profile", () => {
 router.onSectionShow("logout", () => {
     session.logout();
 });
+
+router.onSectionShow("scoreboard", () => {
+    history.showAndFetchScoreboard("top10AndOwn");
+})
 
 session.init("login-email", "login-password", "login-submit");
 
