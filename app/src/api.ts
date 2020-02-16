@@ -75,12 +75,6 @@ export async function refresh(refreshToken: string): Promise<TokenPair> {
 }
 
 export async function signIn(email: string, password: string): Promise<TokenPair> {
-    return {
-        accessToken: "ad",
-        refreshToken: "asda",
-        accessTokenExpiresAt: "ads",
-        refreshTokenExpiresAt: "asd",
-    };
     const response = await trafi.post(
         "/v1/users/signin",
         {
@@ -89,6 +83,5 @@ export async function signIn(email: string, password: string): Promise<TokenPair
             acceptedTermKeys: ["terms", "privacy"],
         }
     );
-    console.log(response.data.authData);
     return response.data.authData;
 }
