@@ -1,6 +1,6 @@
 import * as axios from "axios";
 
-const httpBaseUrl = "http://sustainability-scoreboard-api.simonknott.de:3000";
+const httpBaseUrl = "https://sustainability-scoreboard-api.simonknott.de/api";
 
 export async function publishScore(username: string, score: number) {
   await axios.post(

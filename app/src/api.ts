@@ -2,7 +2,7 @@
 import axios from "axios";
 import { Ride } from "./datatypes";
 
-const corsProxy = "https://sustainability-scoreboard-api.simonknott.de/";
+const corsProxy = "https://sustainability-scoreboard-api.simonknott.de/corsanywhere/";
 
 const trafi = axios.create({
     baseURL: corsProxy + "https://whitelabel-app-api-bvg.trafi.com",
