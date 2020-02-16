@@ -65,7 +65,7 @@
 }
 
 @media (max-width: 300px) {
-  #profile .row {
+  #profile > .row {
     flex-direction: column;
 
     .col-6 {
