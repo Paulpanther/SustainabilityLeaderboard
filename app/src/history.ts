@@ -1,4 +1,4 @@
-import {getCookie, getPrototype} from "./dom_util";
+import {getCookie, getPrototype, removeOldEntries} from "./dom_util";
 import {EnrichedRide, Vehicle} from "./datatypes";
 import * as api from "./api";
 import * as cdc from "./carbon_dioxide_calculator";
@@ -12,26 +12,28 @@ class VehicleElement {
         const co2Elem = vehicle.querySelector(".co2");
         const kmElem = vehicle.querySelector(".km");
 
-        // @ts-ignore
-
         switch (this.vehicleData.name) {
             case "driveby":
+                // @ts-ignore
                 labelElem.innerText = "Miles carsharing";
                 break;
             case 'nextbike':
+                // @ts-ignore
                 labelElem.innerText = "Nextbike bikesharing";
                 break;
             case 'tier':
+                // @ts-ignore
                 labelElem.innerText = "Tier electric kick scooter sharing";
                 break;
             default:
+                // @ts-ignore
                 labelElem.innerText = this.rideData.vehicle;
                 break;
         }
         // @ts-ignore
-        co2Elem.innerText = this.vehicleData.totalCo2;
+        co2Elem.innerText = this.vehicleData.totalCo2.toFixed(2);
         // @ts-ignore
-        kmElem.innerText = this.vehicleData.totalKm;
+        kmElem.innerText = this.vehicleData.totalKm.toFixed(2);
 
         parent.appendChild(vehicle);
     }
@@ -50,18 +52,21 @@ class RideElement {
         const endTimeElem = ride.querySelector(".end-time");
         const makeAndModelElem = ride.querySelector(".make-and-model");
 
-        // @ts-ignore
         switch (this.rideData.vehicle) {
             case "driveby":
+                // @ts-ignore
                 labelElem.innerText = "Miles carsharing";
                 break;
             case 'nextbike':
+                // @ts-ignore
                 labelElem.innerText = "Nextbike bikesharing";
                 break;
             case 'tier':
+                // @ts-ignore
                 labelElem.innerText = "Tier electric kick scooter sharing";
                 break;
             default:
+                // @ts-ignore
                 labelElem.innerText = this.rideData.vehicle;
                 break;
         }
@@ -69,9 +74,9 @@ class RideElement {
         // @ts-ignore
         priceElem.innerText = this.rideData.price;
         // @ts-ignore
-        co2Elem.innerText = this.rideData.co2;
+        co2Elem.innerText = this.rideData.co2.toFixed(2);
         // @ts-ignore
-        kmElem.innerText = this.rideData.km;
+        kmElem.innerText = this.rideData.km.toFixed(2);
         const formatOptions = {weekday: "long", month: "long", day: "numeric"};
         const startTime = this.rideData.start.timestamp;
         // @ts-ignore
@@ -80,7 +85,7 @@ class RideElement {
         // @ts-ignore
         endTimeElem.innerText = endTime.toLocaleDateString("en-US", formatOptions);
         // @ts-ignore
-        makeAndModelElem.innerText = this.rideData.makeAndModel
+        makeAndModelElem.innerText = this.rideData.makeAndModel;
 
 
         parent.appendChild(ride);
@@ -89,11 +94,13 @@ class RideElement {
 
 function showVehicles(vehiclesContainerId: string, vehicles: Vehicle[]) {
     const vehiclesContainer = document.getElementById(vehiclesContainerId);
+    removeOldEntries(vehiclesContainer);
     vehicles.forEach((vehicle) => new VehicleElement(vehicle).addToHtml(vehiclesContainer));
 }
 
 function showRides(ridesContainerId: string, rides: EnrichedRide[]) {
     const ridesContainer = document.getElementById(ridesContainerId);
+    removeOldEntries(ridesContainer);
     rides.forEach((ride) => new RideElement(ride).addToHtml(ridesContainer));
 }
 

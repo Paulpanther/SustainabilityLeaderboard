@@ -6,7 +6,7 @@
 
       stroke-width: 3px;
       stroke: #00f;
-      fill: #fff;
+      fill: rgba(1,1,1,0);
     }
     p {
       margin: 0;
@@ -25,22 +25,28 @@
   }
 
   .summed-up-values, .ride {
+    padding: 5pt;
+  }
+
+  .summed-up-values, .ride {
     margin-bottom: 20pt;
-    border-style: solid;
-    border-color: #e1e1e1;
     background: #e1e1e1;
   }
 
-  .summed-up-values:first-of-type {
-    border-top-left-radius: 10pt;
+  .summed-up-values:nth-of-type(2) {
+    border-top-left-radius: 5pt;
   }
 
-  .summed-up-values:nth-last-of-type(1) {
-    border-bottom-left-radius: 10pt;
+  .summed-up-values:last-of-type {
+    border-bottom-left-radius: 5pt;
+  }
+
+  .ride:nth-of-type(2) {
+    border-top-right-radius: 5pt;
   }
 
   .ride:nth-last-of-type(1) {
-    border-bottom-right-radius: 10pt;
+    border-bottom-right-radius: 5pt;
   }
 
   .ride label:last-of-type {

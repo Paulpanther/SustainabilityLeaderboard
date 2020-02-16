@@ -83,6 +83,5 @@ export async function signIn(email: string, password: string): Promise<TokenPair
             acceptedTermKeys: ["terms", "privacy"],
         }
     );
-    console.log(response.data.authData);
     return response.data.authData;
 }

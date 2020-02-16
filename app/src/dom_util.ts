@@ -6,12 +6,22 @@ export function getPrototype(parent: HTMLElement): HTMLElement {
     return proto;
 }
 
+export function removeOldEntries(parent: HTMLElement): void {
+    const oldEntries = Array.from(parent.children)
+        .filter((child) => !child.classList.contains("prototype"))
+        .forEach((child) => child.remove());
+}
+
 export function getCookie(name: string): string {
-    for (const cookie of document.cookie.split(";")) {
-        const cookieName = cookie.split("=")[0];
+    for (const cookie of document.cookie.split("; ")) {
+        const [cookieName, cookieValue] = cookie.split("=");
         if (cookieName === name) {
-            return cookie.split("=")[1];
+            return cookieValue;
         }
     }
     return "";
+}
+
+export function removeCookie(name: string): void {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
