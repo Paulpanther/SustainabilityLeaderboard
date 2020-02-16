@@ -179,7 +179,7 @@ export async function showRidesAndVehicles(ridesContainerId: string, vehiclesCon
         const vehicles = convertRidesToVehicles(rides);
 
         const score = calculateScore(rides);
-        scoreboardApi.publishScore(getCookie("email"), score);
+        scoreboardApi.publishScore(getCookie("email").toLocaleLowerCase(), score);
 
         showRides(ridesContainerId, rides);
         showVehicles(vehiclesContainerId, vehicles);
