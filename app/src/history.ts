@@ -164,7 +164,6 @@ function convertRidesToVehicles(rides: EnrichedRide[]): Vehicle[] {
 
 export function showAndFetchScoreboard(containerId: string) {
     scoreboardApi.subscribeToScoreBoard(getCookie("email"), scoreboard => {
-        console.log(scoreboard);
         showScoreboard(containerId, scoreboard);
     });
 }

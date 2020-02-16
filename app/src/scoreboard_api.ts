@@ -14,7 +14,7 @@ export async function publishScore(username: string, score: number) {
   );
 }
 
-const wsBaseUrl = "ws://sustainability-scoreboard-api.simonknott.de:3001";
+const wsBaseUrl = "wss://sustainability-scoreboard-api.simonknott.de/ws";
 
 type Unsubscribe = () => void;
 
