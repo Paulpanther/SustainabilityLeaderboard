@@ -2,10 +2,8 @@
 import axios from "axios";
 import { Location, Spacetime, Ride, EnrichedRide } from './datatypes';
 
-const corsProxy = "https://sustainability-scoreboard-api.simonknott.de/";
-
 const osm = axios.create({
-    baseURL: corsProxy + "http://router.project-osrm.org",
+    baseURL: "http://router.project-osrm.org",
 })
 
 function getCo2PerKm(ride: Ride) {
@@ -49,12 +47,13 @@ function getDistance(start: Location, end: Location): number {
 async function getMapDistance(start: Location, end: Location): Promise<number> {
     try {
         const response = await osm.get("/route/v1/driving/" + start.lon + "," + start.lat + ";" + end.lon + "," + end.lat);
-        if (response.routes) {
-            return response.routes[0].distance;
+        if (response.data.routes) {
+            return response.data.routes[0].distance / 1000;
         } else {
             return getDistance(start, end);
         }
     } catch (e) {
+        console.log(e);
         return getDistance(start, end);
     }
 }
