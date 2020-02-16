@@ -22,6 +22,7 @@ type Unsubscribe = () => void;
 type Leaderboard = Record<string, number>;
 
 export function subscribeToLeaderBoard(
+  username: string,
   onChange: (leaderBoard: Leaderboard) => void
 ): Unsubscribe {
   const ws = new WebSocket(wsBaseUrl);
@@ -30,6 +31,8 @@ export function subscribeToLeaderBoard(
     const parsed = JSON.parse(data);
     onChange(parsed);
   };
+
+  ws.send(username);
 
   return () => ws.close();
 }
