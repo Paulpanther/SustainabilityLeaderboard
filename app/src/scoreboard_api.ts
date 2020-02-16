@@ -19,7 +19,7 @@ const wsBaseUrl = "ws://sustainability-scoreboard-api.simonknott.de:3001";
 type Unsubscribe = () => void;
 
 // Maps from username to score
-type Leaderboard = {
+export type Leaderboard = {
   topScorers: Record<string, number>,
   own: {
     score: number,

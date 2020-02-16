@@ -1,5 +1,10 @@
 #profile {
 
+  .row {
+    flex-direction: row;
+
+  }
+
   #rides .route {
     margin-bottom: 20pt;
     svg {
@@ -56,5 +61,15 @@
   .make-and-model {
     font-style: italic;
     padding-left: 30pt;
+  }
+}
+
+@media (max-width: 300px) {
+  #profile .row {
+    flex-direction: column;
+
+    .col-6 {
+      max-width: 100%;
+    }
   }
 }
