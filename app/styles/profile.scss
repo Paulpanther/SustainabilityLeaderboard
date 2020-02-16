@@ -1,6 +1,7 @@
 #profile {
 
   #rides .route {
+    margin-bottom: 20pt;
     svg {
 
       stroke-width: 3px;
@@ -21,5 +22,39 @@
 
   .prototype {
     display: none;
+  }
+
+  .summed-up-values, .ride {
+    padding: 5pt;
+  }
+
+  .summed-up-values, .ride {
+    margin-bottom: 20pt;
+    background: #e1e1e1;
+  }
+
+  .summed-up-values:nth-of-type(2) {
+    border-top-left-radius: 5pt;
+  }
+
+  .summed-up-values:last-of-type {
+    border-bottom-left-radius: 5pt;
+  }
+
+  .ride:nth-of-type(2) {
+    border-top-right-radius: 5pt;
+  }
+
+  .ride:nth-last-of-type(1) {
+    border-bottom-right-radius: 5pt;
+  }
+
+  .ride label:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .make-and-model {
+    font-style: italic;
+    padding-left: 30pt;
   }
 }
