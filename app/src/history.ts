@@ -152,10 +152,10 @@ function convertRidesToVehicles(rides: EnrichedRide[]): Vehicle[] {
     return Array.from(vehicles.values());
 }
 
-export function showRidesAndVehicles(ridesContainerId: string, vehiclesContainerId: string) {
-    api.fetchHistory(getCookie("accessToken")).then((json) => {
-        const rides = api.generateRidesList(json)
-            .map((ride) => cdc.getEnrichedRide(ride));
+export async function showRidesAndVehicles(ridesContainerId: string, vehiclesContainerId: string) {
+    api.fetchHistory(getCookie("accessToken")).then(async (json) => {
+        const rides = await Promise.all(api.generateRidesList(json)
+            .map(async (ride) => await cdc.getEnrichedRide(ride)));
         const vehicles = convertRidesToVehicles(rides);
         showRides(ridesContainerId, rides);
         showVehicles(vehiclesContainerId, vehicles);
