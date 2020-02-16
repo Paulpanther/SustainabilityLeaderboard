@@ -49,12 +49,11 @@ async function getMapDistance(start: Location, end: Location): Promise<number> {
         const response = await osm.get("/route/v1/driving/" + start.lon + "," + start.lat + ";" + end.lon + "," + end.lat);
         if (response.data.routes) {
             return response.data.routes[0].distance / 1000;
-        } else {
-            return getDistance(start, end);
         }
     } catch (e) {
-        console.log(e);
-        return getDistance(start, end);
+        console.log(e)
+    } finally {
+        return getDistance(start, end) * Math.sqrt(2);
     }
 }
 
