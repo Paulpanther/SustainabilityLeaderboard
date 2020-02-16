@@ -80,7 +80,7 @@ class RideElement {
         co2Elem.innerText = this.rideData.co2.toFixed(2);
         // @ts-ignore
         kmElem.innerText = this.rideData.km.toFixed(2);
-        const formatOptions = {weekday: "long", month: "long", day: "numeric"};
+        const formatOptions = {year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric"};
         const startTime = this.rideData.start.timestamp;
         // @ts-ignore
         startTimeElem.innerText = startTime.toLocaleDateString("en-US", formatOptions);
