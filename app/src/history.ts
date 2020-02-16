@@ -115,8 +115,13 @@ class ScoreboardEntryElement {
 
         // @ts-ignore
         nameElem.innerText = this.name;
-        // @ts-ignore
-        co2PerKmElem.innerText = _.round(this.co2PerKm, 2);
+        if (this.co2PerKm === null) {
+            // @ts-ignore
+            co2PerKmElem.innerText = "None";
+        } else {
+            // @ts-ignore
+            co2PerKmElem.innerText = _.round(this.co2PerKm, 2);
+        }
         if (this.isOwn)
             proto.classList.add("own");
 
@@ -165,7 +170,6 @@ function convertRidesToVehicles(rides: EnrichedRide[]): Vehicle[] {
 
 export function showAndFetchScoreboard(containerId: string) {
     scoreboardApi.subscribeToScoreBoard(getCookie("email"), scoreboard => {
-        console.log(scoreboard);
         showScoreboard(containerId, scoreboard);
     });
 }
@@ -173,6 +177,9 @@ export function showAndFetchScoreboard(containerId: string) {
 function calculateScore(rides: EnrichedRide[]): number {
     const drivenKilometers = _.sumBy(rides, (r: EnrichedRide) => r.km);
     const emittedCo2 = _.sumBy(rides, (r: EnrichedRide) => r.co2);
+
+    if (drivenKilometers === 0)
+        return Infinity;
 
     const avg = emittedCo2 / drivenKilometers;
     return avg;
@@ -185,7 +192,7 @@ export async function showRidesAndVehicles(ridesContainerId: string, vehiclesCon
         const vehicles = convertRidesToVehicles(rides);
 
         const score = calculateScore(rides);
-        scoreboardApi.publishScore(getCookie("email"), score);
+        scoreboardApi.publishScore(getCookie("email").toLocaleLowerCase(), score);
 
         showRides(ridesContainerId, rides);
         showVehicles(vehiclesContainerId, vehicles);

@@ -1,0 +1,32 @@
+#top10AndOwn {
+  .entry {
+    margin-bottom: 10pt;
+    padding: 5pt;
+    background: #e1e1e1;
+
+    span {
+    }
+  }
+
+  .prototype {
+     display: none;
+   }
+
+  .entry:nth-of-type(2) {
+    border-top-left-radius: 5pt;
+    border-top-right-radius: 5pt;
+  }
+
+  .entry:last-of-type {
+    border-bottom-left-radius: 5pt;
+    border-bottom-right-radius: 5pt;
+  }
+
+  .own {
+    background: #91cb11;
+  }
+
+  label {
+    font-size: 8pt;
+  }
+}

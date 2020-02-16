@@ -3,7 +3,7 @@ import axios from "axios";
 import { Location, Spacetime, Ride, EnrichedRide } from './datatypes';
 
 const osm = axios.create({
-    baseURL: "http://router.project-osrm.org",
+    baseURL: "https://sustainability-scoreboard-api.simonknott.de/corsanywhere/http://router.project-osrm.org",
 })
 
 function getCo2PerKm(ride: Ride) {
