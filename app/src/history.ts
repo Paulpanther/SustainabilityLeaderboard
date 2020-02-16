@@ -54,6 +54,7 @@ class RideElement {
         const startTimeElem = ride.querySelector(".start-time");
         const endTimeElem = ride.querySelector(".end-time");
         const makeAndModelElem = ride.querySelector(".make-and-model");
+        const co2PerKmElem = ride.querySelector(".co2-per-km");
 
         switch (this.rideData.vehicle) {
             case "driveby":
@@ -80,7 +81,7 @@ class RideElement {
         co2Elem.innerText = this.rideData.co2.toFixed(2);
         // @ts-ignore
         kmElem.innerText = this.rideData.km.toFixed(2);
-        const formatOptions = {weekday: "long", month: "long", day: "numeric"};
+        const formatOptions = {year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric"};
         const startTime = this.rideData.start.timestamp;
         // @ts-ignore
         startTimeElem.innerText = startTime.toLocaleDateString("en-US", formatOptions);
@@ -89,6 +90,8 @@ class RideElement {
         endTimeElem.innerText = endTime.toLocaleDateString("en-US", formatOptions);
         // @ts-ignore
         makeAndModelElem.innerText = this.rideData.makeAndModel;
+        // @ts-ignore
+        co2PerKmElem.innerText = this.rideData.co2PerKm.toFixed(2);
 
 
         parent.appendChild(ride);
