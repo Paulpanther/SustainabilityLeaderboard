@@ -48,6 +48,7 @@ class RideElement {
         const kmElem = ride.querySelector(".km");
         const startTimeElem = ride.querySelector(".start-time");
         const endTimeElem = ride.querySelector(".end-time");
+        const makeAndModelElem = ride.querySelector(".make-and-model");
 
         // @ts-ignore
         switch (this.rideData.vehicle) {
@@ -78,6 +79,9 @@ class RideElement {
         const endTime = this.rideData.end.timestamp;
         // @ts-ignore
         endTimeElem.innerText = endTime.toLocaleDateString("en-US", formatOptions);
+        // @ts-ignore
+        makeAndModelElem.innerText = this.rideData.makeAndModel
+
 
         parent.appendChild(ride);
     }
