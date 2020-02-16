@@ -51,6 +51,7 @@ class RideElement {
         const startTimeElem = ride.querySelector(".start-time");
         const endTimeElem = ride.querySelector(".end-time");
         const makeAndModelElem = ride.querySelector(".make-and-model");
+        const co2PerKmElem = ride.querySelector(".co2-per-km");
 
         switch (this.rideData.vehicle) {
             case "driveby":
@@ -86,6 +87,8 @@ class RideElement {
         endTimeElem.innerText = endTime.toLocaleDateString("en-US", formatOptions);
         // @ts-ignore
         makeAndModelElem.innerText = this.rideData.makeAndModel;
+        // @ts-ignore
+        co2PerKmElem.innerText = this.rideData.co2PerKm.toFixed(2);
 
 
         parent.appendChild(ride);
