@@ -1,4 +1,4 @@
-import {getCookie, getPrototype} from "./dom_util";
+import {getCookie, getPrototype, removeOldEntries} from "./dom_util";
 import {EnrichedRide, Vehicle} from "./datatypes";
 import * as api from "./api";
 import * as cdc from "./carbon_dioxide_calculator";
@@ -80,7 +80,7 @@ class RideElement {
         // @ts-ignore
         endTimeElem.innerText = endTime.toLocaleDateString("en-US", formatOptions);
         // @ts-ignore
-        makeAndModelElem.innerText = this.rideData.makeAndModel
+        makeAndModelElem.innerText = this.rideData.makeAndModel;
 
 
         parent.appendChild(ride);
@@ -89,11 +89,13 @@ class RideElement {
 
 function showVehicles(vehiclesContainerId: string, vehicles: Vehicle[]) {
     const vehiclesContainer = document.getElementById(vehiclesContainerId);
+    removeOldEntries(vehiclesContainer);
     vehicles.forEach((vehicle) => new VehicleElement(vehicle).addToHtml(vehiclesContainer));
 }
 
 function showRides(ridesContainerId: string, rides: EnrichedRide[]) {
     const ridesContainer = document.getElementById(ridesContainerId);
+    removeOldEntries(ridesContainer);
     rides.forEach((ride) => new RideElement(ride).addToHtml(ridesContainer));
 }
 
