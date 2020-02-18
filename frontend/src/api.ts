@@ -1,11 +1,10 @@
 // @ts-ignore
 import axios from "axios";
 import { Ride } from "./datatypes";
-
-const corsProxy = "https://sustainability-scoreboard-api.simonknott.de/corsanywhere/";
+import { CORS_ANYHWERE_ADDRESS } from "./corsanywhere";
 
 const trafi = axios.create({
-    baseURL: corsProxy + "https://whitelabel-app-api-bvg.trafi.com",
+    baseURL: CORS_ANYHWERE_ADDRESS + "https://whitelabel-app-api-bvg.trafi.com",
 })
 
 //const vehicleTypeMap = new Map([['tier','Kickscooter-Sharing'],['nextbike','Bike-Sharing'],['sts','Bahn & Bus'],['driveby','Car-Sharing'],['emmy','Scooter-Sharing']])

@@ -1,0 +1,47 @@
+version: "3.7"
+
+services:
+
+  frontend:
+    build: ./frontend
+    environment:
+      SCOREBOARD_API_WS_ADDRESS: "wss://$HOST/scoreboard-api/"
+      SCOREBOARD_API_HTTP_ADDRESS: "https://$HOST/scoreboard-api/"
+      CORS_PROXY_ADDRESS: "https://$HOST/corsanywhere/"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=PathPrefixStrip: /"
+
+  scoreboard-api:
+    build: ./scoreboard-api
+    environment:
+      REDIS_HOST: redis
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=PathPrefixStrip: /scoreboard-api/"
+
+  redis:
+    image: redis
+
+  cors:
+    image: skn0tt/corsanywhere
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=PathPrefixStrip: /corsanywhere/"
+  
+  traefik:
+    image: traefik:1.7.18
+    comand:
+      - "--docker"
+      - "--docker.exposedByDefault=false"
+    depends_on:
+      - cors
+      - scoreboard-api
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  

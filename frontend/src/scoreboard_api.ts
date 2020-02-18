@@ -1,6 +1,7 @@
 import * as axios from "axios";
+import { getCookie } from "./dom_util";
 
-const httpBaseUrl = "https://sustainability-scoreboard-api.simonknott.de/api";
+const httpBaseUrl = getCookie("SCOREBOARD_API_HTTP_ADDRESS");
 
 export async function publishScore(username: string, score: number) {
   await axios.post(
@@ -14,7 +15,7 @@ export async function publishScore(username: string, score: number) {
   );
 }
 
-const wsBaseUrl = "wss://sustainability-scoreboard-api.simonknott.de/ws";
+const wsBaseUrl = getCookie("SCOREBOARD_API_WS_ADDRESS");
 
 type Unsubscribe = () => void;
 
