@@ -5,12 +5,13 @@ services:
   frontend:
     build: ./frontend
     environment:
-      SCOREBOARD_API_WS_ADDRESS: "wss://$HOST/scoreboard-api/"
-      SCOREBOARD_API_HTTP_ADDRESS: "https://$HOST/scoreboard-api/"
-      CORS_PROXY_ADDRESS: "https://$HOST/corsanywhere/"
+      SCOREBOARD_API_WS_ADDRESS: "wss://$HOSTNAME:3443/scoreboard-api/"
+      SCOREBOARD_API_HTTP_ADDRESS: "https://$HOSTNAME/scoreboard-api/"
+      CORS_PROXY_ADDRESS: "https://$HOSTNAME/corsanywhere/"
     labels:
       - "traefik.enable=true"
       - "traefik.frontend.rule=PathPrefixStrip: /"
+      - "traefik.frontend.entryPoints=http,https"
 
   scoreboard-api:
     build: ./scoreboard-api
@@ -19,29 +20,50 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.frontend.rule=PathPrefixStrip: /scoreboard-api/"
+      - "traefik.scoreboard-api-http.port=3000"
+      - "traefik.scoreboard-api-http.protocol=http"
+      - "traefik.scoreboard-api-http.frontend.entryPoints=http,https"
+      - "traefik.scoreboard-api-ws.port=3001"
+      - "traefik.scoreboard-api-ws.frontend.entryPoints=ws,wss"
+      - "traefik.scoreboard-api-ws.protocol=ws"
 
   redis:
     image: redis
 
   cors:
-    image: skn0tt/corsanywhere
+    image: skn0tt/cors-anywhere
     labels:
       - "traefik.enable=true"
       - "traefik.frontend.rule=PathPrefixStrip: /corsanywhere/"
+      - "traefik.frontend.entryPoints=http,https"
   
   traefik:
     image: traefik:1.7.18
-    comand:
+    command:
+      - "--entryPoints=Name:http Address::80"
+      - "--entryPoints=Name:https Address::443 Tls"
+      - "--entryPoints=Name:ws Address::3000"
+      - "--entryPoints=Name:wss Address::3443 Tls"
+      - "--api"
       - "--docker"
       - "--docker.exposedByDefault=false"
+      - --acme.email=your-email-here@my-awesome-app.org
+      - --acme.storage=acme.json
+      - --acme.entryPoint=https
+      - --acme.onHostRule=true
+      - --acme.httpchallenge.entrypoint=http
     depends_on:
       - cors
       - scoreboard-api
       - frontend
     ports:
       - "80:80"
+      - "3000:3000"
+      - "3443:3443"
+      - "8080:8080"
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./acme.json:/opt/traefik/acme.json"
 
   
