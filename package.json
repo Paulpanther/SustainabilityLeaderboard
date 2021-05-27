@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Show the Co2 and other emissions for your travel route and compare it to others ",
   "scripts": {
-    "start": "npx parcel app/index.html",
+    "start": "npx parcel serve app/index.html",
     "build": "npx parcel build app/index.html"
   },
   "repository": {
@@ -17,16 +17,20 @@
   },
   "homepage": "https://github.com/Paulpanther/SustainabilityLeaderboard#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4",
+    "@parcel/transformer-sass": "^2.0.0-nightly.690",
+    "parcel": "^2.0.0-beta.2",
     "sass": "^1.25.0",
     "typescript": "^3.7.5"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "jquery": "^3.5.0",
+    "lodash": "latest",
     "popper.js": "^1.16.1",
-    "regenerator-runtime": "^0.13.3",
-    "lodash": "latest"
+    "regenerator-runtime": "^0.13.3"
   }
 }
